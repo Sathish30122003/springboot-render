@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Profile Card</title>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #154de853, #8ba8eb);
+    }
+    .profile-card {
+        background: #fff;
+        width: 280px;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+    .profile-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-top: -40px;
+        border: 3px solid #fff;
+    }
+    .profile-card h2 {
+        font-size: 1.4em;
+        margin: 10px 0;
+    }
+    .profile-card p {
+        color: #888;
+        font-size: 0.9em;
+        margin: 5px 0;
+    }
+    .profile-card button {
+        background: #ff6a85;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        margin-top: 15px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.9em;
+    }
+</style>
+</head>
+<body>
+
+<div class="profile-card">
+    <img th:src="${user.profilelink}" alt="Profile Picture">
+    <div th:fragment="userDetails(user)">
+       <h2><p>Name: <span th:text="${user.name}"></span></p></h2> 
+        <p>Email: <span th:text="${user.email}"></span></p>
+        <p>Place: <span th:text="${user.place}"></span></p>
+        <p>Father Name: <span th:text="${user.fathername != null ? user.fathername : 'No data'}">No data</span></p>
+        <p>Mother Name: <span th:text="${user.mothername != null ? user.mothername : 'No data'}">No data</span></p>
+        <p>Occupation: <span th:text="${user.occupation != null ? user.occupation : 'No data'}">No data</span></p>
+        <p>Hobby: <span th:text="${user.hobby != null ? user.hobby : 'No data'}">No data</span></p>
+        <p>Date of Birth: <span th:text="${user.date != null ? user.date : 'No data'}">No data</span></p>
+    </div>
+    <button th:onclick="|window.location='@{/additional}'|">Update Profile</button>
+</div>
+
+</body>
+</html>
